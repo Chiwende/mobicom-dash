@@ -24,11 +24,6 @@ export class AgentKycComponent implements OnInit {
       this.listOfData = data;
     })
 
-    if (this.searchValue == '') {
-      this.listOfData = this.listOfDisplayData
-    } else {
-      this.listOfDisplayData = [...this.listOfData];
-    }
   }
 
   reset(): void {

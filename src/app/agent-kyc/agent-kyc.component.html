@@ -1,10 +1,11 @@
-<nz-table #basicTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+<nz-table #basicTable [nzData]="listOfData" nzTableLayout="fixed">
     <thead>
       <tr>
         <th>Firstname</th>
         <th>Lastname</th>
-        <th nzCustomFilter >MSISDN
-            <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+        <th>MSISDN
+            <!--  nzCustomFilter -->
+            <!-- <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu"> -->
             <i nz-icon nzType="search"></i>
             </nz-filter-trigger>
         </th>
