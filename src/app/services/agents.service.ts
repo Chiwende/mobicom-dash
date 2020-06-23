@@ -5,7 +5,7 @@ import { Accounts } from '../models/accounts.model';
 import { Customers } from '../models/customers.model';
 
 // const BASE_URL = "http://localhost:3000";
-const BASE_URL = "https://lipila-api.herokuapp.compm run";
+const BASE_URL = "https://lipila-api.herokuapp.com";
 
 @Injectable({
   providedIn: 'root'
