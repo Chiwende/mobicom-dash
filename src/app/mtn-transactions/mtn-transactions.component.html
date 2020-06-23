@@ -1,0 +1,106 @@
+<div class="table-container">
+    <nz-divider nzOrientation="left" nzText="Transaction Details"></nz-divider>
+    <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Agent Number</th>
+            <th>Customer Number</th>
+            <th style="text-align:center;">Amount(K)</th>
+            <th>Commission Earned</th>
+            <th style="text-align:center;">Transaction ID</th>
+            <th>Date Created</th>
+            <th >Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.transaction_id }}</td>
+            <td>{{ data.agent_msisdn }}</td>
+            <td style="text-align:center;">{{ data.customer_msisdn }}</td>
+            <td>{{ data.transaction_amount }}</td>
+            <td style="text-align:center;">{{ data.commission_amount }}</td>
+            <td style="text-align:center;">{{ data.transactionID }}</td>
+            <td>{{ data.transaction_date }}</td>
+            <td>
+              <a nz-button nzType="link" (click)="showModal(data)">More Details</a>
+            </td>
+          </tr>
+        </tbody>
+    </nz-table>  
+  </div>
+  
+  <!-- Transaction Details Modal -->
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="Transaction Details" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+      
+    <div nz-row style="text-align: center;">
+        <!-- Agent MSISDN -->
+        <div nz-col nzSpan="12">
+            <nz-descriptions>
+                <nz-descriptions-item nzTitle="Agent MSISDN">26000000000</nz-descriptions-item>
+            </nz-descriptions>
+        </div>
+        <!-- Customer MSISDN -->
+        <div nz-col nzSpan="12">
+            <nz-descriptions>
+                <nz-descriptions-item nzTitle="Customer MSISDN">26000000000</nz-descriptions-item>
+            </nz-descriptions>
+        </div>
+    </div>
+  
+    <!-- Service -->
+    <div nz-row style="text-align: center;">
+        <nz-descriptions>
+            <nz-descriptions-item nzTitle="Service">ZESCO</nz-descriptions-item>
+        </nz-descriptions>
+    </div>
+  
+    <div nz-row style="text-align: center;">
+        <!-- Amount -->
+        <div nz-col nzSpan="12">
+            <nz-descriptions>
+                <nz-descriptions-item nzTitle="Amount"></nz-descriptions-item>
+            </nz-descriptions>
+        </div>
+        <!-- Float Balance -->
+        <div nz-col nzSpan="12">
+            <nz-descriptions>
+                <nz-descriptions-item nzTitle="Balance"></nz-descriptions-item>
+            </nz-descriptions>
+        </div>
+    </div>
+  
+    <div nz-row style="text-align: center;">
+        <!-- Transaction id -->
+        <div nz-col nzSpan="12">
+            <nz-descriptions>
+                <nz-descriptions-item nzTitle="Transaction ID"></nz-descriptions-item>
+            </nz-descriptions>
+        </div>
+        <!-- Date Create -->
+        <div nz-col nzSpan="12">
+            <nz-descriptions>
+                <nz-descriptions-item nzTitle="Date Created"></nz-descriptions-item>
+            </nz-descriptions>
+        </div>
+    </div>
+  
+    <!-- Message Sent to customer -->
+    <div nz-row>
+        <nz-divider nzText="Customer Message" nzOrientation="left"></nz-divider>
+    </div>
+  
+    <!-- Message sent to Agent -->
+    <div nz-row>
+        <nz-divider nzText="Agent Message" nzOrientation="left"></nz-divider>
+    </div>
+  
+    <div *nzModalFooter>
+        <!-- <span>Modal Footer: </span> -->
+        <button nz-button nzType="default" (click)="handleCancel()">Close</button>
+        <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading" routerLink="zesco-transactions">View All Transactions</button>
+    </div>
+  </nz-modal>
+  
+  
+  

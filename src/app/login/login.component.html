@@ -1,0 +1,40 @@
+<div class="container" style="text-align:center; align-items: center; width: 100%;">
+    <mat-card style="width: 500px; ">
+        <mat-card-title style="text-align: center; margin: 0 auto; width: 40%;">
+            Login
+        </mat-card-title>
+        <mat-card-content>
+          <!--  -->
+            <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+
+                <!-- Email Input -->
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="Please input your email!">
+                    <nz-input-group nzPrefixIcon="user">
+                      <input type="text" nz-input formControlName="email" placeholder="email" [(ngModel)]="email"/>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+
+                <!-- Password Input -->
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="Please input your Password!">
+                    <nz-input-group nzPrefixIcon="lock">
+                      <input type="password" nz-input formControlName="password" placeholder="Password" [(ngModel)]="password" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                
+                <!-- [disabled]="!email || !password" -->
+                <button 
+                    nz-button 
+                    class="login-form-button login-form-margin" 
+                    [nzType]="'primary'"
+                    (click)="login()" 
+                >Sign In</button>
+                Or <a> register now! </a>
+              </form>
+        </mat-card-content>
+
+    </mat-card>
+</div>

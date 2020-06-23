@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyDi4Ri2sDiHHAsYwpUO6MDCh_gjmNLMQk8',
+    authDomain: 'lipila-dash.firebaseapp.com',
+    databaseURL: 'https://lipila-dash.firebaseio.com',
+    projectId: 'lipila-dash',
+    storageBucket: 'lipila-dash.appspot.com',
+    messagingSenderId: '906485076175'
+  }
 };
 
 /*
