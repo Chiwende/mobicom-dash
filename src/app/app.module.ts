@@ -28,7 +28,7 @@ import { ZamtelTransactionsComponent } from './zamtel-transactions/zamtel-transa
 import { MtnTransactionsComponent } from './mtn-transactions/mtn-transactions.component';
 import { ZescoTransactionsComponent } from './zesco-transactions/zesco-transactions.component';
 import { AgentKycComponent } from './agent-kyc/agent-kyc.component';
-
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
 
 registerLocaleData(en);
 
@@ -43,7 +43,8 @@ registerLocaleData(en);
     ZamtelTransactionsComponent,
     MtnTransactionsComponent,
     ZescoTransactionsComponent,
-    AgentKycComponent
+    AgentKycComponent,
+    RegistrationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,7 @@ registerLocaleData(en);
     MaterialModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
-    // AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

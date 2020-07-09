@@ -1,0 +1,49 @@
+/* .nz-content{
+  justify-self: center;
+  align-content: center;
+  vertical-align: middle;
+} */
+.Welcome-logo{
+    /* justify-content: center; */
+    margin-left: 23%;
+    margin-right: auto;
+    text-align: center;
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: bolder;
+    
+  }
+  .Login-logo{
+    font-family: 'Shadows Into Light', cursive;
+  }
+  
+  .home-icon {
+    margin-right: auto;
+    margin-left: 5%;
+    margin-top: 5%;
+  }
+  .flex-container{
+  
+    align-content: center;
+    font-family: 'Shadow Into Light', cursive;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-bottom: 25%;
+    margin-right: auto;
+    padding-right: 10%;
+  }
+  .login-form {
+    max-width: 60%;
+    max-height: 60%;
+  }
+  
+  .login-form-margin {
+    margin-bottom: 16px;
+  }
+  
+  .login-form-forgot {
+    float: right;
+  }
+  
+  .login-form-button {
+    width: 100%;
+  }

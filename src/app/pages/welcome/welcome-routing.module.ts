@@ -12,7 +12,8 @@ import { ZescoTransactionsComponent } from 'src/app/zesco-transactions/zesco-tra
 import { AgentKycComponent } from 'src/app/agent-kyc/agent-kyc.component';
 
 const routes: Routes = [
-  // { path: '', component: WelcomeComponent },
+  //{ path: '', component: WelcomeComponent },
+  //{ path: 'login', component: LoginComponent}
   
 ];
 

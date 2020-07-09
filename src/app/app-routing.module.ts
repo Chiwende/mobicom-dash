@@ -9,11 +9,14 @@ import { ZamtelTransactionsComponent } from 'src/app/zamtel-transactions/zamtel-
 import { MtnTransactionsComponent } from 'src/app/mtn-transactions/mtn-transactions.component';
 import { ZescoTransactionsComponent } from 'src/app/zesco-transactions/zesco-transactions.component';
 import { AgentKycComponent } from 'src/app/agent-kyc/agent-kyc.component';
+import {WelcomeComponent}from 'src/app/pages/welcome/welcome.component';
+import {RegistrationFormComponent} from './registration-form/registration-form.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/transactions' },
-  { path: 'transactions', component: TransactionsComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'login', component: LoginComponent},
+  { path: 'registration', component: RegistrationFormComponent},
+  { path: 'transactions', component: TransactionsComponent },
   { path: 'accounts', component: AccountsComponent},
   { path: 'agents', component: AgentsComponent },
   { path: 'transactions', component: TransactionsComponent},
@@ -22,6 +25,7 @@ const routes: Routes = [
   { path: 'mtn-transactions', component: MtnTransactionsComponent },
   { path: 'zesco-transactions', component: ZescoTransactionsComponent},
   { path: 'agents-kyc', component: AgentKycComponent },
+  //{ path: 'Welcome', component: WelcomeComponent},
   { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) }
 ];
 
