@@ -4,7 +4,9 @@ export interface TransactionDetails {
     transaction_amount: number,
     commission_amount: number,
     agent_msisdn: number,
-    transaction_date: Date,
+    transaction_date: Date[],
     txid: number,
-    serviceID: number
+    serviceID: number,
+    from: string,
+    to: string
 }

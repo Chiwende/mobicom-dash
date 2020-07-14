@@ -1,3 +1,18 @@
+<header>
+    <div nz-row>
+        <div nz-col [nzSpan] = "8">
+            <nz-input-group [nzSuffix] = "suffixIconSearch">
+                <input nz-input placeholder="Search by number" [(ngModel)]="numberSearch" (ngModelChange)="searchNumber($event)"/>
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+                <i nz-icon nzType="search"></i>
+            </ng-template>
+        </div>
+        <div class ="rangpicker" nz-col [nzSpan] = "12">
+            <nz-range-picker [nzFormat]="dateFormat" [(ngModel)]="sortDate" (ngModelChange)= "sortByDate($event)"></nz-range-picker>
+        </div>
+    </div>
+</header>
 <div class="table-container">
     <nz-divider nzOrientation="left" nzText="Transaction Details"></nz-divider>
     <nz-table #basicTable nzSize="middle" [nzData]="listOfData">

@@ -11,14 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, DatePipe } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { AntdModule } from './modules/antd/antd.module';
 import { MaterialModule } from './modules/material/material.module';
-import { LoginComponent } from './login/login.component';
+//import { LoginComponent } from './login/login.component';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
-import { AuthService } from './services/auth.service';
+//import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment';
 import { AccountsComponent } from './accounts/accounts.component';
 import { TransactionsComponent } from './transactions/transactions.component';
@@ -28,14 +28,14 @@ import { ZamtelTransactionsComponent } from './zamtel-transactions/zamtel-transa
 import { MtnTransactionsComponent } from './mtn-transactions/mtn-transactions.component';
 import { ZescoTransactionsComponent } from './zesco-transactions/zesco-transactions.component';
 import { AgentKycComponent } from './agent-kyc/agent-kyc.component';
-
+//import { RegistrationFormComponent } from './registration-form/registration-form.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    //LoginComponent,
     AccountsComponent,
     TransactionsComponent,
     AgentsComponent,
@@ -43,7 +43,9 @@ registerLocaleData(en);
     ZamtelTransactionsComponent,
     MtnTransactionsComponent,
     ZescoTransactionsComponent,
-    AgentKycComponent
+    AgentKycComponent,
+    //RegistrationFormComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -57,12 +59,14 @@ registerLocaleData(en);
     AntdModule,
     MaterialModule,
     ReactiveFormsModule,
-    AngularFireAuthModule,
-    // AngularFireModule.initializeApp(environment.firebase)
+    //AngularFireAuthModule,
+    //AngularFireAuth,
+    //AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
-    AuthService
+    //AuthService
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
