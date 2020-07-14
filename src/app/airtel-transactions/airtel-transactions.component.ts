@@ -21,21 +21,36 @@ export class AirtelTransactionsComponent implements OnInit {
   commission_earned: number;
   companyname = 'mobicom';
   customerMSISDN: number;
+  numberSearch: number;
 
 
   listOfData: TransactionDetails[] = [];
+  displayListOfData: TransactionDetails[] = [];
 
   isVisible = false;
   isConfirmLoading = false;
 
   reset(): void {
     this.searchValue = '';
-    this.search();
+   // this.searchNumber();
   }
 
-  search(): void {
-    this.visible = false;
-  }
+  searchNumber(value: string): void {
+    console.log('Value ====>', value);
+    if(value ==''|| !value){
+      this.displayListOfData = this.listOfData;
+    }
+      
+  
+    this.displayListOfData = this.listOfData.filter(transaction=>{
+      return (
+       transaction.agent_msisdn.toString().includes(value)||
+      transaction.transaction_id.toString().includes(value)||
+      transaction.customer_msisdn.toString().includes(value)
+    )
+    })
+   
+    }
 
   showModal(data): void {
     console.log(data)
@@ -89,6 +104,7 @@ export class AirtelTransactionsComponent implements OnInit {
     this.transactonsService.getAllAirtelTransactions(this.companyname).subscribe((data) => {
       console.log(data)
       this.listOfData = data;
+      this.displayListOfData = this.listOfData;
     })
   }
 

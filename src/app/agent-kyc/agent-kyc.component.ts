@@ -12,7 +12,8 @@ export class AgentKycComponent implements OnInit {
   companyname = 'mobicom';
   searchValue = '';
   visible = false;
-  listOfDisplayData: Customers[] = []
+  listOfDisplayData: Customers[] = [];
+  numberSearch: number;
 
   constructor(
     private readonly agentsService: AgentsService,
@@ -28,7 +29,7 @@ export class AgentKycComponent implements OnInit {
 
   reset(): void {
     this.searchValue = '';
-    this.search();
+    //this.search();
   }
 
   search(): void {

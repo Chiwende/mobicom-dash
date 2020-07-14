@@ -1,4 +1,7 @@
 export interface Transactions {
+    // agent_msisdn: any;
+    // transaction_id: any;
+    // customer_msisdn: any;
     id: number,
     MSISDN: number;
     amount: number;

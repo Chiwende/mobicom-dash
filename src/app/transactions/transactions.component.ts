@@ -30,9 +30,28 @@ export class TransactionsComponent implements OnInit {
   dateCreated: string;
   zescoToken: string;
   transDetails: TransactionDetails[] = [];
+  displayListOfData: Transactions[]=[];
   isVisible = false;
   isConfirmLoading = false;
   companyname = "mobicom"
+  numberSearch: number;
+
+  searchNumber(value: string): void {
+    console.log('Value ====>', value);
+    if(value ==''|| !value){
+      this.displayListOfData = this.listOfData;
+    }
+      
+  
+    this.displayListOfData = this.listOfData.filter(transaction=>{
+      return (
+      transaction.MSISDN.toString().includes(value)||
+      transaction.id.toString().includes(value)
+      //transaction.customer_msisdn.toString().includes(value)
+    )
+    })
+   
+    }
 
   showModal(data): void {
     console.log(data)
@@ -85,6 +104,7 @@ export class TransactionsComponent implements OnInit {
   ngOnInit(): void {
     this.transactonsService.getAllTransactions(this.companyname).subscribe((data) => {
       this.listOfData = data;
+      this.displayListOfData = this.listOfData;
     })
   }
 

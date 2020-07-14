@@ -70,6 +70,18 @@
   </div> -->
   
   <!-- Transaction id agent number recipient amount commission earned view transaction details(modal directs to transaction type) -->
+<header>
+    <div nz-row>
+        <div nz-col [nzSpan] = "8">
+            <nz-input-group [nzSuffix] = "suffixIconSearch">
+                <input nz-input placeholder="Search by number" [(ngModel)]="numberSearch" (ngModelChange)="searchNumber($event)"/>
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+                <i nz-icon nzType="search"></i>
+            </ng-template>
+        </div>
+    </div>
+</header>
   <div class="table-container">
       <nz-divider nzOrientation="left" nzText="Transaction Details"></nz-divider>
       <nz-table #basicTable nzSize="middle" [nzData]="listOfData">
