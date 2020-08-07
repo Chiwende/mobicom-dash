@@ -1,5 +1,5 @@
 export interface Transactions {
-    transaction_date: any;
+    transaction_date: Date;
     agent_msisdn: any;
     transaction_id: any;
     customer_msisdn: any;
@@ -13,6 +13,6 @@ export interface Transactions {
     externalTransactionID: string;
     statusCode: number;
     companyname: string;
-    dateCreated: Date[];
+    // dateCreated: Date[];
     payment_channel : string;
 }

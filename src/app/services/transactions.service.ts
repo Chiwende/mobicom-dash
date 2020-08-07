@@ -53,4 +53,21 @@ export class TransactionsService {
   getAgentStatement(number: string){
     return this.http.get<Transactions[]>(`${BASE_URL}/transactions/get-statement/${number}`);
   }
+  //created by mswati
+  getTransactionTotal(){
+    return this.http.get<Transactions[]>(`http://localhost:3000/transactions/all-transactions-total`)
+  }
+  getTransactionCount(){
+    return this.http.get<Transactions[]>(`http://localhost:3000/transactions/all-transactions-count`)
+  }
+  getMTNTransactionsSum(){
+    return this.http.get<Transactions[]>(`http://localhost:3000/transactions/mtn-transactions-total`)
+  }
+  getAirtelTransactionsSum(){
+    return this.http.get<Transactions[]>(`http://localhost:3000/transactions/airtel-transactions-total`)
+  }
+  getZamtelTransactionsSum(){
+    return this.http.get<Transactions[]>(`http://localhost:3000/transactions/zamtel-transactions-total`)
+  }
+
 }

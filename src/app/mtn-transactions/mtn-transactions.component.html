@@ -1,3 +1,5 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+<nz-card style="margin-top: 15px;">
 <header>
     <div nz-row>
         <div nz-col [nzSpan] = "8">
@@ -36,7 +38,7 @@
             <td>{{ data.transaction_amount }}</td>
             <td style="text-align:center;">{{ data.commission_amount }}</td>
             <td style="text-align:center;">{{ data.transactionID }}</td>
-            <td>{{ data.transaction_date }}</td>
+            <td>{{ data.transaction_date | date }}</td>
             <td>
               <a nz-button nzType="link" (click)="showModal(data)">More Details</a>
             </td>
@@ -116,6 +118,8 @@
         <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading" routerLink="zesco-transactions">View All Transactions</button>
     </div>
   </nz-modal>
+</nz-card>
+</nz-spin>
   
   
   

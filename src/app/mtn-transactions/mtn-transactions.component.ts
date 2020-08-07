@@ -3,6 +3,7 @@ import { TransactionDetails } from 'src/app/models/trans-details.model';
 import { TransactionsService } from 'src/app/services/transactions.service';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { DatePipe } from '@angular/common';
+
 //import { DateRangeDTO } from 'src/app/models/dateRange.dto';
 @Component({
   selector: 'app-mtn-transactions',
@@ -12,6 +13,7 @@ import { DatePipe } from '@angular/common';
 export class MtnTransactionsComponent implements OnInit {
 
   searchValue = '';
+  isSpinning = true;
   dateFormat: string;
   visible = false;
   agentMSISDN: number;
@@ -32,31 +34,34 @@ export class MtnTransactionsComponent implements OnInit {
   isVisible = false;
   isConfirmLoading = false;
   TransactionsService: any;
-  datepipe: any;
+  value: number;
+  //datepipe: DatePipe;
 
   reset(): void {
     this.searchValue = '';
     //this.searchNumber();
   }
-  sortByDate(dateRange: Date[]){
-
-    console.log('d ====>', dateRange);
-    // const fromDate = this.datepipe.transform(dateRange[0], "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    // const toDate = this.datepipe.transform(dateRange[1], "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    if(dateRange==null||!dateRange){
-      this.displayListOfData=this.listOfData
+  sortByDate(sortDate: Date){
+  
+  const fromDate = this.datePipe.transform(sortDate[0], "yyyy-MM-dd");
+  const toDate = this.datePipe.transform(sortDate[1], "yyyy-MM-dd");
+  
+    if((fromDate === null)&& (toDate === null)){
+      this.displayListOfData = this.listOfData;
     }
-    let displayListOfData: any[]=[];
-    
-    this.displayListOfData = this.listOfData.filter((transaction, index)=> {
-      if (transaction.transaction_date >= dateRange.values[0] && transaction.transaction_date <= dateRange.values[1]) {
-         
-        this.displayListOfData.push(transaction);
-      }
-  })
-      this.displayListOfData = displayListOfData;
-  }
-   
+      console.log('fdate:', fromDate )
+      console.log('tdate:', toDate )
+      this.displayListOfData = this.listOfData.filter((transaction => {
+        const compDate = this.datePipe.transform(transaction.transaction_date, "yyyy-MM-dd");
+        console.log('td',compDate);
+        return((fromDate <= compDate) && (compDate <= toDate))
+        
+        
+      }))
+      console.log(this.displayListOfData)
+     
+   }
+  
   
   searchNumber(value: string): void {
     console.log('Value ====>', value);
@@ -106,6 +111,7 @@ export class MtnTransactionsComponent implements OnInit {
     this.transactonsService.getAgentMessage(data.id).subscribe((dat) => {
       const messageBody = dat
     })
+    
   }
 
   handleOk(): void {
@@ -128,6 +134,8 @@ export class MtnTransactionsComponent implements OnInit {
       console.log(data)
       this.listOfData = data;
       this.displayListOfData = this.listOfData;
+      this.isSpinning = false;
+      
     })
   }
 

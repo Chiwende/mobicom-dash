@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionsService } from 'src/app/services/transactions.service';
 import { TransactionDetails } from 'src/app/models/trans-details.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-zamtel-transactions',
@@ -9,6 +10,7 @@ import { TransactionDetails } from 'src/app/models/trans-details.model';
 })
 export class ZamtelTransactionsComponent implements OnInit {
   searchValue = '';
+  dateFormat: string;
   visible = false;
   agentMSISDN: number;
   amount: number;
@@ -19,6 +21,8 @@ export class ZamtelTransactionsComponent implements OnInit {
   companyname = 'mobicom';
   customerMSISDN: number;
   numberSearch: number;
+  sortDate: Date[];
+  isSpinning = true;
 
   listOfData: TransactionDetails[] = [];
   displayListOfData: TransactionDetails[] = [];
@@ -47,6 +51,26 @@ export class ZamtelTransactionsComponent implements OnInit {
     })
    
     }
+    sortByDate(sortDate: Date){
+  
+      const fromDate = this.datePipe.transform(sortDate[0], "yyyy-MM-dd");
+      const toDate = this.datePipe.transform(sortDate[1], "yyyy-MM-dd");
+      
+        if((fromDate === null)&& (toDate === null)){
+          this.displayListOfData = this.listOfData;
+        }
+          console.log('fdate:', fromDate )
+          console.log('tdate:', toDate )
+          this.displayListOfData = this.listOfData.filter((transaction => {
+            const compDate = this.datePipe.transform(transaction.transaction_date, "yyyy-MM-dd");
+            console.log('td',compDate);
+            return((fromDate <= compDate) && (compDate <= toDate))
+            
+            
+          }))
+          console.log(this.displayListOfData)
+         
+       }
 
   showModal(data): void {
     console.log(data)
@@ -93,7 +117,8 @@ export class ZamtelTransactionsComponent implements OnInit {
 
 
   constructor(
-    private readonly transactonsService: TransactionsService
+    private readonly transactonsService: TransactionsService,
+    public datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -101,6 +126,7 @@ export class ZamtelTransactionsComponent implements OnInit {
       console.log(data)
       this.listOfData = data;
       this.displayListOfData = this.listOfData;
+      this.isSpinning = false;
     })
   }
 

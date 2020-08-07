@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionsService } from 'src/app/services/transactions.service';
 import { Transactions } from 'src/app/models/transactions.model';
 import { TransactionDetails } from 'src/app/models/trans-details.model';
-
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-airtel-transactions',
@@ -22,8 +22,11 @@ export class AirtelTransactionsComponent implements OnInit {
   companyname = 'mobicom';
   customerMSISDN: number;
   numberSearch: number;
+  // datePipe: DatePipe;
+  sortDate: Date[];
+  dateFormat: string;
 
-
+  isSpinning = true;
   listOfData: TransactionDetails[] = [];
   displayListOfData: TransactionDetails[] = [];
 
@@ -78,17 +81,40 @@ export class AirtelTransactionsComponent implements OnInit {
       console.log("commission" + dat[0]['commission_amount'])
       this.commission_earned = dat[0]['commission_amount']
       this.customerMSISDN = 0
+      
     })
 
     this.transactonsService.getAgentMessage(data.id).subscribe((dat) => {
       const messageBody = dat
     })
+    
   }
 
   handleOk(): void {
     console.log('Button ok clicked!');
     this.isVisible = false;
   }
+
+  sortByDate(sortDate: Date){
+  
+    const fromDate = this.datePipe.transform(sortDate[0], "yyyy-MM-dd");
+    const toDate = this.datePipe.transform(sortDate[1], "yyyy-MM-dd");
+    
+      if((fromDate === null)&& (toDate === null)){
+        this.displayListOfData = this.listOfData;
+      }else{
+        console.log('fdate:', fromDate )
+        console.log('tdate:', toDate )
+        this.displayListOfData = this.listOfData.filter((transaction => {
+          const compDate = this.datePipe.transform(transaction.transaction_date, "yyyy-MM-dd");
+          console.log('td',compDate);
+          return((fromDate <= compDate) && (compDate <= toDate))
+          
+          
+        }))
+        console.log(this.displayListOfData)
+      } 
+     }
 
   handleCancel(): void {
     console.log('Button cancel clicked!');
@@ -97,7 +123,8 @@ export class AirtelTransactionsComponent implements OnInit {
 
 
   constructor(
-    private readonly transactonsService: TransactionsService
+    private readonly transactonsService: TransactionsService,
+    public datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -105,6 +132,7 @@ export class AirtelTransactionsComponent implements OnInit {
       console.log(data)
       this.listOfData = data;
       this.displayListOfData = this.listOfData;
+      this.isSpinning = false;
     })
   }
 
