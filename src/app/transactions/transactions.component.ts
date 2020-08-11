@@ -5,7 +5,7 @@ import { Transactions } from '../models/transactions.model'
 import { NumberValueAccessor } from '@angular/forms';
 import { TransactionDetails } from '../models/trans-details.model';
 import { DatePipe } from '@angular/common';
-
+// import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-transactions',

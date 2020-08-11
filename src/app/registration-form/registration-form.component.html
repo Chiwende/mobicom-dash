@@ -1,7 +1,8 @@
-<header><div nz-row class=  "home-icon">
+<nz-modal>
+<!-- <header><div nz-row class=  "home-icon">
     <button><i nz-icon nzType="home" nzTheme="outline" routerLink="/login"></i></button>
   </div>
-  </header>
+  </header> -->
   <div nz-row class = "registration-form"><h1>Rgistration Form</h1></div>
       <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event)">
         <nz-form-item>
@@ -30,17 +31,7 @@
             </ng-template>
           </nz-form-control>
         </nz-form-item>
-        <!-- <nz-form-item> -->
-          <!-- <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
-            <span>
-              Nickname
-              <i nz-icon nz-tooltip nzTitle="What do you want other to call you" nzType="question-circle" nzTheme="outline"></i>
-            </span>
-          </nz-form-label> -->
-          <!-- <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
-            <input nz-input id="nickname" formControlName="nickname" />
-          </nz-form-control> -->
-        <!-- </nz-form-item> -->
+       
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Phone Number</nz-form-label>
           <nz-form-control
@@ -60,30 +51,6 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <!-- <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="website" nzRequired>Website</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input website!">
-            <input nz-input id="website" formControlName="website" placeholder="website" />
-          </nz-form-control> -->
-        <!-- </nz-form-item> -->
-        <!-- <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>Captcha</nz-form-label>
-          <nz-form-control
-            [nzSm]="14"
-            [nzXs]="24"
-            nzErrorTip="Please input the captcha you got!"
-            nzExtra="We must make sure that your are a human."
-          >
-            <div nz-row [nzGutter]="8">
-              <div nz-col [nzSpan]="12">
-                <input nz-input formControlName="captcha" id="captcha" />
-              </div>
-              <div nz-col [nzSpan]="12">
-                <button nz-button (click)="getCaptcha($event)">Get captcha</button>
-              </div>
-            </div>
-          </nz-form-control>
-        </nz-form-item> -->
         <nz-form-item nz-row class="register-area">
           <nz-form-control [nzSpan]="14" [nzOffset]="6">
             <label nz-checkbox formControlName="agree">
@@ -97,4 +64,4 @@
           </nz-form-control>
         </nz-form-item>
       </form>
-    
+    </nz-modal>   

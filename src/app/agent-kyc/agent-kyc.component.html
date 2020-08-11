@@ -1,3 +1,25 @@
+
+  <!-- <header> -->
+  <nz-card style="height: 70px; margin-top: 12px; margin-right: 12px;">
+    <nz-row [nzGutter]="16">
+      
+        <div nz-col [nzSpan] = "8">
+            <nz-input-group [nzSuffix] = "suffixIconSearch">
+                <input nz-input placeholder="Search by number" [(ngModel)]="numberSearch" (ngModelChange)="searchNumber($event)"/>
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+                <i nz-icon nzType="search"></i>
+            </ng-template>
+        </div>
+        <div class ="rangpicker" nz-col [nzSpan] = "12">
+            <nz-range-picker [nzFormat]="dateFormat" [(ngModel)]="sortDate" (ngModelChange)= "sortByDate($event)"></nz-range-picker>
+        </div>
+    </nz-row>
+  </nz-card>
+<!-- </header> -->
+
+<nz-card style="margin-top: 22px; margin-right: 12px;">
+<nz-row [nzGutter]="16">
 <nz-table #basicTable [nzData]="listOfData" nzTableLayout="fixed">
     <thead>
       <tr>
@@ -22,7 +44,7 @@
         <td>{{ data.MSISDN }}</td>
         <td>{{ data.status}} </td>
         <td>{{ data.NRC}} </td>
-        <td>{{ data.dateCreated }}</td>
+        <td>{{ data.dateCreated | date }}</td>
         <!-- <td>
           <a>Action 一 {{ data.name }}</a>
           <nz-divider nzType="vertical"></nz-divider>
@@ -31,9 +53,12 @@
       </tr>
     </tbody>
   </nz-table>
+</nz-row>
+</nz-card>
+
 
   <!-- drop down menu -->
-  <nz-dropdown-menu #menu="nzDropdownMenu">
+  <!-- <nz-dropdown-menu #menu="nzDropdownMenu">
     <div class="ant-table-filter-dropdown">
       <div class="search-box">
         <input type="text" nz-input placeholder="Search by number" [(ngModel)]="searchValue" />
@@ -43,4 +68,4 @@
         <button nz-button nzSize="small" (click)="reset()">Reset</button>
       </div>
     </div>
-  </nz-dropdown-menu>
+  </nz-dropdown-menu> -->

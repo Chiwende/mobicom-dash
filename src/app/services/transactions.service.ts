@@ -69,5 +69,8 @@ export class TransactionsService {
   getZamtelTransactionsSum(){
     return this.http.get<Transactions[]>(`http://localhost:3000/transactions/zamtel-transactions-total`)
   }
+  getZescoTransactionSum(){
+    return this.http.get<Transactions[]>(`http://localhost:3000/transactions/zesco-transactions-total`)
+  }
 
 }

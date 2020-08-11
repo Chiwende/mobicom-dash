@@ -9,37 +9,90 @@ import { Transactions } from '../models/transactions.model';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  //transactonsService: any;
   isSpinning = true;
-  amount: Number;
+  amount: number;
   transactionCount: Number;
   totalTransactions: Number;
   airtelamount: number;
+  zescoTotal: number
   zamtelamount: number;
-  zescoamount: number;
   transactionID: any;
-  //value: number;
+
 
   constructor(
     private readonly transactionsService: TransactionsService
   ) { }
 
   ngOnInit(): void {
+      this.data();
+    this.pieChart ={
+      title: 'Revenue Breakdown',
+      type: ChartType.PieChart,
+      columns: ['Revenu Breakdown', 'Percentage'],
+      data: [
+        ['MTN', this.amount],
+        ['Zamtel', this.zamtelamount],
+        ['Airtel', this.airtelamount],
+        ['Zesco', this.zescoTotal]
+  
+      ]
+    }
+    
+
+
+  }
+  data(){
     this.transactionsService.getMTNTransactionsSum().subscribe(data => {
       this.amount = data[0].amount;
       console.log('value', data[0])
+      this.pieChart ={
+        title: 'Revenue Breakdown',
+        type: ChartType.PieChart,
+        columns: ['Revenu Breakdown', 'Percentage'],
+        data: [
+          ['MTN', this.amount],
+          ['Zamtel', this.zamtelamount],
+          ['Airtel', this.airtelamount],
+          ['Zesco', this.zescoTotal]
+    
+        ]
+      }
     
     });
     this.transactionsService.getAirtelTransactionsSum().subscribe(data => {
       this.airtelamount = data[0].amount;
-      console.log('value', data[0])
+      console.log('airtel amount', this.airtelamount)
       this.isSpinning = false;
+      this.pieChart ={
+        title: 'Revenue Breakdown',
+        type: ChartType.PieChart,
+        columns: ['Revenu Breakdown', 'Percentage'],
+        data: [
+          ['MTN', this.amount],
+          ['Zamtel', this.zamtelamount],
+          ['Airtel', this.airtelamount],
+          ['Zesco', this.zescoTotal]
+    
+        ]
+      }
     
     });
     this.transactionsService.getZamtelTransactionsSum().subscribe(data => {
       this.zamtelamount = data[0].amount;
       console.log('value', data[0])
       this.isSpinning = false;
+      this.pieChart ={
+        title: 'Revenue Breakdown',
+        type: ChartType.PieChart,
+        columns: ['Revenu Breakdown', 'Percentage'],
+        data: [
+          ['MTN', this.amount],
+          ['Zamtel', this.zamtelamount],
+          ['Airtel', this.airtelamount],
+          ['Zesco', this.zescoTotal]
+    
+        ]
+      }
 
     });
     this.transactionsService.getTransactionTotal().subscribe(data =>{
@@ -52,11 +105,25 @@ export class DashboardComponent implements OnInit {
       console.log('value', data[0])
       this.isSpinning = false;
     })
-
-
-  }
-  generatePieChart(){
+    this.transactionsService.getZescoTransactionSum().subscribe(data =>{
+      this.zescoTotal = data[0].amount;
+      console.log('value', data[0])
+      this.isSpinning = false;
+      this.pieChart ={
+        title: 'Revenue Breakdown',
+        type: ChartType.PieChart,
+        columns: ['Revenu Breakdown', 'Percentage'],
+        data: [
+          ['MTN', this.amount],
+          ['Zamtel', this.zamtelamount],
+          ['Airtel', this.airtelamount],
+          ['Zesco', this.zescoTotal]
     
+        ]
+      }
+      
+    })
+    console.log('obj', this.pieChart)
   }
   
   public pieChart ={
@@ -64,13 +131,14 @@ export class DashboardComponent implements OnInit {
     type: ChartType.PieChart,
     columns: ['Revenu Breakdown', 'Percentage'],
     data: [
-      ['MTN', 30],
-      ['Zamtel', 20],
-      ['Airtel', 30],
-      ['Zesco', 20]
+      ['MTN', this.amount],
+      ['Zamtel', this.zamtelamount],
+      ['Airtel', this.airtelamount],
+      ['Zesco', this.zescoTotal]
 
     ]
   }
+  
 
 }
 
