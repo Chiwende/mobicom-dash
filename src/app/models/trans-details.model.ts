@@ -1,4 +1,5 @@
 export interface TransactionDetails {
+    TransactionDetails: number;
     transaction_id: number,
     customer_msisdn: number,
     transaction_amount: number,

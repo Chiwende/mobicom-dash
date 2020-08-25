@@ -1,3 +1,5 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+<nz-card style="margin-top: 12px; margin-right: 12;">
 <header>
     <div nz-row>
         <div nz-col [nzSpan] = "8">
@@ -8,7 +10,11 @@
                 <i nz-icon nzType="search"></i>
             </ng-template>
         </div>
+        <div class ="rangpicker" nz-col [nzSpan] = "12">
+            <nz-range-picker [nzFormat]="dateFormat" [(ngModel)]="sortDate" (ngModelChange)= "sortByDate($event)"></nz-range-picker>
+        </div>
     </div>
+    <!-- </div> -->
 </header>
 <div class="table-container">
     <nz-divider nzOrientation="left" nzText="Transaction Details"></nz-divider>
@@ -33,7 +39,7 @@
             <td>{{ data.transaction_amount }}</td>
             <td style="text-align:center;">{{ data.commission_amount }}</td>
             <td style="text-align:center;">{{ data.transactionID }}</td>
-            <td>{{ data.transaction_date }}</td>
+            <td>{{ data.transaction_date | date }}</td>
             <td>
               <a nz-button nzType="link" (click)="showModal(data)">More Details</a>
             </td>
@@ -113,6 +119,6 @@
         <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading" routerLink="zesco-transactions">View All Transactions</button>
     </div>
   </nz-modal>
-  
-  
+</nz-card>  
+</nz-spin>  
   

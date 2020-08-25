@@ -54,4 +54,8 @@ export class AgentsService {
   fetchCustomerDetails(number: string){
     return this.http.get<Customers[]>(`${BASE_URL}/agents/get-customer-details/${number}`);
   }
+  
+  // registerAgent( payload: any){
+  //   return this.http.post<any>(`${BASE_URL}/agents/register-agent`, payload);
+  // }
 }

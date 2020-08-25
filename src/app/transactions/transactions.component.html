@@ -70,6 +70,8 @@
   </div> -->
   
   <!-- Transaction id agent number recipient amount commission earned view transaction details(modal directs to transaction type) -->
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+<nz-card style="margin-top: 12px; margin-right: 12;">
 <header>
     <div nz-row>
         <div nz-col [nzSpan] = "8">
@@ -80,11 +82,14 @@
                 <i nz-icon nzType="search"></i>
             </ng-template>
         </div>
+        <div class ="rangpicker" nz-col [nzSpan] = "12">
+            <nz-range-picker [nzFormat]="dateFormat" [(ngModel)]="sortDate" (ngModelChange)= "sortByDate($event)"></nz-range-picker>
+        </div>
     </div>
 </header>
   <div class="table-container">
       <nz-divider nzOrientation="left" nzText="Transaction Details"></nz-divider>
-      <nz-table #basicTable nzSize="middle" [nzData]="listOfData">
+      <nz-table #basicTable nzSize="middle" [nzData]="listOfData" id="all-transactions">
           <thead>
             <tr>
               <th>ID</th>
@@ -193,5 +198,5 @@
           <!-- <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading" routerLink="zesco-transactions">View All Transactions</button> -->
       </div>
     </nz-modal>
-  
-  
+</nz-card> 
+</nz-spin>
